@@ -1,8 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
-enum RoleUser { client, member }
-
-enum TypeUser { client, member, chef }
+import '../constants/role.dart';
+import '../constants/type.dart';
 
 class UserModel {
   final List<Map<String, dynamic>> ese;
@@ -16,15 +15,17 @@ class UserModel {
   final List<Map<String, dynamic>> user_who_add;
   final bool deleted;
   final DateTime date_deleted;
+  final DateTime date_created;
   final String motif_deleted;
   final DateTime timeStamp = DateTime.timestamp();
   UserModel({
+    required this.ese,
     required this.uid,
+    required this.date_created,
     required this.role,
     required this.phone,
     required this.type,
     required this.user_who_add,
-    required this.ese,
     required this.password,
     this.deleted = false,
     required this.date_deleted,
