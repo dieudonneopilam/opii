@@ -3,7 +3,7 @@
 import 'package:gestock/constants/device.dart';
 
 class ProduitModel {
-  final List<Map<String, dynamic>> ese;
+  final Map<String, dynamic> ese;
   final String uid;
   final String name;
   final String description;
@@ -13,7 +13,7 @@ class ProduitModel {
   final double prix_vente;
   final DEVISE_MONAIE devise_prix;
   final String urlImage;
-  final List<Map<String, dynamic>> user_who_add;
+  final Map<String, dynamic> user_who_add;
   final bool deleted;
   final DateTime date_deleted;
   final String motif_deleted;

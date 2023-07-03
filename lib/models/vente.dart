@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 class VenteModel {
-  final List<Map<String, dynamic>> produit;
+  final Map<String, dynamic> produit;
   final String uid;
   final int qte_vendu;
   final double prix_vente;
@@ -10,7 +10,7 @@ class VenteModel {
   final DateTime date_vente;
   final String motif_deleted;
   final DateTime timeStamp = DateTime.timestamp();
-  final List<Map<String, dynamic>> user_who_vente;
+  final Map<String, dynamic> user_who_vente;
   VenteModel({
     required this.user_who_vente,
     required this.produit,

@@ -4,7 +4,7 @@ import '../constants/role.dart';
 import '../constants/type.dart';
 
 class UserModel {
-  final List<Map<String, dynamic>> ese;
+  final Map<String, dynamic> ese;
   final String uid;
   final String name;
   final String email;
@@ -12,7 +12,7 @@ class UserModel {
   final TypeUser type;
   final RoleUser role;
   final String password;
-  final List<Map<String, dynamic>> user_who_add;
+  final Map<String, dynamic> user_who_add;
   final bool deleted;
   final DateTime date_deleted;
   final DateTime date_created;
