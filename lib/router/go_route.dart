@@ -4,33 +4,30 @@ import '../screens/mobile/home/home.dart';
 
 class GoRoutes {
   static final GoRouter router = GoRouter(
-    errorBuilder: (context, state) => const HomeMobile(title: 'error'),
+    initialLocation: '/',
     routes: [
       GoRoute(
-          path: '/',
-          builder: (context, state) => const HomeMobile(title: 'title'),
-          routes: [
-            GoRoute(
-                name: 'settings',
-                path: 'settings/:title',
-                builder: (context, state) {
-                  state.queryParameters.forEach((key, value) {
-                    print("$key:$value");
-                  });
-                  return HomeMobile(
-                      title: state.pathParameters['title'].toString());
-                },
-                redirect: (context, state) {
-                  if (1 + 1 == 0) {
-                    return "/login";
-                  }
-                  return "/";
-                },
-                routes: [GoRoute(path: '/para')]),
-          ]),
-      GoRoute(
-          path: '/home',
-          builder: (context, state) => const HomeMobile(title: 'title')),
+        name: 'home',
+        path: '/',
+        builder: (context, state) => const HomeMobile(title: 'title'),
+        redirect: (context, state) {
+          if (11 + 1 == 14) {
+            return '/login';
+          }
+          return '/';
+        },
+        routes: [
+          GoRoute(
+            name: 'profile',
+            path: 'profil/:id',
+            builder: (context, state) =>
+                HomeMobile(title: state.pathParameters['id'].toString()),
+          ),
+        ],
+      )
     ],
+    errorBuilder: (context, state) {
+      return const HomeMobile(title: 'title');
+    },
   );
 }
