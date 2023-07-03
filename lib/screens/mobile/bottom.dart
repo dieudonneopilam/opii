@@ -1,0 +1,43 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gestock/constants/liste_pages.dart';
+import 'package:gestock/logic/cupertino.tap.bar/cupertino_tab_bar_bloc.dart';
+import 'package:heroicons/heroicons.dart';
+
+class BottomNavigationBarPage extends StatelessWidget {
+  const BottomNavigationBarPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CupertinoTabBarBloc, CupertinoTabBarState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.black,
+          body: pagesClient[(state as CupertinoTabBarInitial).currentIndex],
+          bottomNavigationBar: CupertinoTabBar(
+            activeColor: Colors.black,
+            backgroundColor: Colors.white,
+            height: 60,
+            currentIndex: (state).currentIndex,
+            onTap: (value) => context
+                .read<CupertinoTabBarBloc>()
+                .add(OnChangeEvent(currentIndex: value)),
+            items: const [
+              BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.home), label: 'home'),
+              BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.magnifyingGlass), label: 'search'),
+              BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.wrenchScrewdriver),
+                  label: 'settings'),
+              BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.user), label: 'home'),
+              BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.handRaised), label: 'questions'),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}

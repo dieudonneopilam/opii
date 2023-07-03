@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bootstrap_icons: ^1.10.5+2
   card_loading: ^0.3.0
   cloud_firestore: ^4.8.2
   connectivity_plus: ^4.0.1
@@ -40,6 +41,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.3
   go_router: ^9.0.0
+  heroicons: ^0.8.0
   image_picker: ^1.0.0
   shimmer_animation: ^2.1.0+1
 
