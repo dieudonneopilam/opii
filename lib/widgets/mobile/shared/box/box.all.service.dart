@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'boxcontentservice.dart';
 
 class BoxAllService extends StatelessWidget {
@@ -16,12 +15,12 @@ class BoxAllService extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BoxContentService(
-                icon: Icons.abc,
+                icon: Icons.tag,
                 title: 'produits',
                 onTap: () => context.goNamed("produits")),
             Expanded(child: Container()),
             BoxContentService(
-                icon: Icons.abc,
+                icon: Icons.cable_rounded,
                 title: 'abc',
                 onTap: () => context.goNamed('ventes')),
           ],

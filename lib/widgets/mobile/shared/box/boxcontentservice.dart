@@ -17,7 +17,7 @@ class BoxContentService extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 150,
+        height: 157,
         width: 170,
         decoration: BoxDecoration(
             color: const Color(0xFFEEEEEE),
