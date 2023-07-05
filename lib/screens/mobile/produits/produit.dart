@@ -3,7 +3,6 @@ import 'package:gestock/utils/colors.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
-
 import '../../../widgets/mobile/shared/box/boxcontentproduit.dart';
 
 class ProduitsPage extends StatelessWidget {
@@ -41,8 +40,14 @@ class ProduitsPage extends StatelessWidget {
           const SizedBox(width: 15),
         ],
       ),
-      body: const SingleChildScrollView(
-        child: BoxContentProduit(),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height - 82,
+          child: ListView.builder(
+            itemCount: 5,
+            itemBuilder: (context, index) => const BoxContentProduit(),
+          ),
+        ),
       ),
     );
   }

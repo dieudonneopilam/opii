@@ -11,7 +11,7 @@ class BoxContentProduit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -30,12 +30,15 @@ class BoxContentProduit extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           const SizedBox(width: 10),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextMoy(text: 'Fanta'),
-              TextMoy(text: '400 bouteilles'),
-              TextMoy(text: '2000 \$ / U'),
+              const TextMoy(text: 'Fanta'),
+              const TextMoy(text: '400 bouteilles'),
+              TextMoy(
+                text: '2000 \$ / U',
+                color: colorBlue,
+              ),
             ],
           ),
           Expanded(child: Container()),
