@@ -14,6 +14,8 @@ class BottomNavigationBarPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.white,
             toolbarHeight: 70,
             title: const Text('Tesla Companie'),
             actions: const [

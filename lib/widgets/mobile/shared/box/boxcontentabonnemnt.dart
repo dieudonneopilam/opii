@@ -19,26 +19,23 @@ class BoxContentAbonnemnt extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextMoy(text: 'main service', size: 18),
-              TextMoy(text: '25\$ / Moth', size: 18),
+              const TextMoy(text: 'Main service', size: 20),
+              TextMoy(text: '25\$ / Moth', size: 20, color: colorBlue),
             ],
           ),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const TextSmal(text: '3 / 200 jours'),
-              TextSmal(text: '20/01/2024', color: colorred),
+              const TextMoy(text: '3 / 200 jours', size: 18),
+              TextMoy(text: '20/01/2024', color: colorred, size: 18),
             ],
           ),
           const SizedBox(height: 10),
-          TextMoy(text: 'Description', size: 18, color: colorBlue),
-          const SizedBox(height: 5),
-          const TextSmal(
-              text: 'cet abonnement vous offre les possibilites suivantes'),
+          TextSmal(text: 'Voir plus', color: colorBlue, size: 18),
         ],
       ),
     );

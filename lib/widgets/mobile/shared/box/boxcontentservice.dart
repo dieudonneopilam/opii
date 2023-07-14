@@ -24,7 +24,7 @@ class BoxContentService extends StatelessWidget {
             borderRadius: BorderRadius.circular(30)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Icon(icon), TextSmal(text: title, size: 20)],
+          children: [Icon(icon, size: 30), TextSmal(text: title, size: 20)],
         ),
       ),
     );

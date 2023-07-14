@@ -7,4 +7,9 @@ abstract class InternetConnexionState extends Equatable {
   List<Object> get props => [];
 }
 
-class InternetConnexionInitial extends InternetConnexionState {}
+class InternetConnexionInitial extends InternetConnexionState {
+  final EtatConnexion etatConnexion;
+  const InternetConnexionInitial({required this.etatConnexion});
+  @override
+  List<Object> get props => [etatConnexion];
+}

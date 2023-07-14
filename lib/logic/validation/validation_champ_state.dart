@@ -7,8 +7,6 @@ abstract class ValidationChampState extends Equatable {
   List<Object> get props => [];
 }
 
-enum EtatField { valid, invalid, none }
-
 class ValidationChampInitial extends ValidationChampState {
   final EtatField valueField;
   const ValidationChampInitial({required this.valueField});

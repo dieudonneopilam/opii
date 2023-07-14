@@ -2,7 +2,6 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 part 'cupertino_tab_bar_event.dart';
 part 'cupertino_tab_bar_state.dart';
 

@@ -3,6 +3,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../constants/etat.dart';
+
 part 'validation_champ_event.dart';
 part 'validation_champ_state.dart';
 

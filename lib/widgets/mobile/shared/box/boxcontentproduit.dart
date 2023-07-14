@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gestock/widgets/mobile/shared/text_small.dart';
 import 'package:heroicons/heroicons.dart';
 import '../../../../utils/colors.dart';
-import '../text_moy.dart';
 
 class BoxContentProduit extends StatelessWidget {
   const BoxContentProduit({
@@ -21,7 +21,7 @@ class BoxContentProduit extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 85,
+            height: 75,
             width: 100,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -33,12 +33,9 @@ class BoxContentProduit extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TextMoy(text: 'Fanta'),
-              const TextMoy(text: '400 bouteilles'),
-              TextMoy(
-                text: '2000 \$ / U',
-                color: colorBlue,
-              ),
+              const TextSmal(text: 'Fanta', size: 20),
+              const TextSmal(text: 'Stock : 400 bouteilles'),
+              TextSmal(text: 'Prix de vente : 10 \$', color: colorBlue),
             ],
           ),
           Expanded(child: Container()),
