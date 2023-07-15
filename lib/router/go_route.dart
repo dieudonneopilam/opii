@@ -1,13 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestock/logic/add.produit/add_produit_bloc.dart';
+import 'package:gestock/logic/cupertino.tap.bar/cupertino_tab_bar_bloc.dart';
+import 'package:gestock/logic/login/login_bloc.dart';
+import 'package:gestock/logic/signup/sign_up_bloc.dart';
+import 'package:gestock/screens/mobile/auth/login.dart';
+import 'package:gestock/screens/mobile/auth/signun.dart';
+import 'package:gestock/screens/mobile/bottom.dart';
 import 'package:gestock/screens/mobile/depenses/depense.dart';
 import 'package:gestock/screens/mobile/pertes/perte.dart';
 import 'package:gestock/screens/mobile/produits/add.produit.dart';
 import 'package:gestock/screens/mobile/produits/produit.dart';
 import 'package:gestock/screens/mobile/ventes/vente.dart';
 import 'package:go_router/go_router.dart';
-import '../logic/cupertino.tap.bar/cupertino_tab_bar_bloc.dart';
-import '../screens/mobile/bottom.dart';
 import '../screens/mobile/home/home.dart';
 
 class GoRoutes {
@@ -21,6 +25,22 @@ class GoRoutes {
           child: const BottomNavigationBarPage(),
         ),
         routes: [
+          GoRoute(
+            name: 'login',
+            path: 'login',
+            builder: (context, state) => BlocProvider(
+              create: (context) => LoginBloc(),
+              child: const Login(),
+            ),
+          ),
+          GoRoute(
+            name: 'signup',
+            path: 'sign-up',
+            builder: (context, state) => BlocProvider(
+              create: (context) => SignUpBloc(),
+              child: const SignUp(),
+            ),
+          ),
           GoRoute(
               name: 'ventes',
               path: 'ventes',

@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:gestock/services/firebase_firestore_methods.dart';
 import 'package:gestock/utils/snackbar.dart';
 
 import '../../constants/etat.dart';
@@ -220,9 +219,7 @@ class AddProduitBloc extends Bloc<AddProduitEvent, AddProduitState> {
         try {
           emit((state as AddProduitInitial)
               .copyWith(etat_request: EtatRequest.loading));
-          Future.delayed(const Duration(seconds: 5));
-          await FireStoreMethods()
-              .addProduit('designation', 'prix', 'expression', 'devise');
+
           emit((state as AddProduitInitial)
               .copyWith(etat_request: EtatRequest.loaded));
         } catch (e) {

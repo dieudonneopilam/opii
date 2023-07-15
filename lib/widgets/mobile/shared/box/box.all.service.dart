@@ -31,7 +31,10 @@ class BoxAllService extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BoxContentService(
-                icon: BootstrapIcons.handbag, title: 'approv..', onTap: () {}),
+              icon: BootstrapIcons.handbag,
+              title: 'approv..',
+              onTap: () => context.goNamed('signup'),
+            ),
             Expanded(child: Container()),
             BoxContentService(
                 icon: BootstrapIcons.signpost_2,
