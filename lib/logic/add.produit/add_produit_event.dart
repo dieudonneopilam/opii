@@ -66,7 +66,7 @@ class OnChangedStockMin extends AddProduitEvent {
 }
 
 class OnChangedImage extends AddProduitEvent {
-  final String img;
+  final Uint8List img;
   const OnChangedImage({required this.img});
   @override
   List<Object> get props => [img];

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "104261438084",
+    "project_id": "opii-7b46b",
+    "storage_bucket": "opii-7b46b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104261438084:android:e76324d9474ef4794450d1",
+        "android_client_info": {
+          "package_name": "com.example.gestock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104261438084-lr5kgb3om6v84bvr3fa7u5phim8h2jb5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBSzwcY9EZegwDji6IWGrcKK5_ZjeFUI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104261438084-lr5kgb3om6v84bvr3fa7u5phim8h2jb5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "104261438084-ldp7fobee1465jsqrr8k8ncrhi85c0ap.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gestock"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

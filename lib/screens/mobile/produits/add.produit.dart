@@ -1,13 +1,14 @@
-// ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names
+// ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, unused_field, prefer_final_fields
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gestock/constants/etat.dart';
 import 'package:gestock/logic/add.produit/add_produit_bloc.dart';
 import 'package:gestock/utils/colors.dart';
 import 'package:gestock/utils/pickimage.dart';
+import 'package:gestock/widgets/mobile/field/dropdownlist.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
+import 'package:gestock/widgets/mobile/shared/text_small.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../widgets/mobile/field/field1.dart';
@@ -30,12 +31,15 @@ class _AddProduitPageState extends State<AddProduitPage> {
   TextEditingController stock_minController = TextEditingController();
   TextEditingController stock_maxController = TextEditingController();
   Uint8List? img;
+  List<String> _currencies = ['USD', 'FC'];
+  String _selectedCurrency = 'USD';
 
   void selectImage() async {
     Uint8List? i = await PickerImage().pickimage(ImageSource.gallery);
     setState(() {
       if (i != null) {
         img = i;
+        context.read<AddProduitBloc>().add(OnChangedImage(img: img!));
       }
     });
   }
@@ -69,20 +73,34 @@ class _AddProduitPageState extends State<AddProduitPage> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: img != null
-                  ? Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          image: DecorationImage(
-                              image: MemoryImage(img!), fit: BoxFit.cover)),
+                  ? Row(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                  image: MemoryImage(img!), fit: BoxFit.cover)),
+                        ),
+                        Expanded(child: Container()),
+                        TextSmal(text: 'Edit', color: colorBlue),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: selectImage,
+                          child: Icon(Icons.edit, color: colorBlue),
+                        ),
+                        const SizedBox(width: 10)
+                      ],
                     )
                   : GestureDetector(
                       onTap: () => selectImage(),
                       child: Row(
                         children: [
                           Icon(Icons.photo, size: 50, color: colorBlue),
-                          const Text('selectionner la photo du produit')
+                          TextSmal(
+                              text: 'selectionner la photo du produit',
+                              color: colorBlue)
                         ],
                       ),
                     ),
@@ -121,6 +139,7 @@ class _AddProduitPageState extends State<AddProduitPage> {
                   etatField: state.prix,
                   controller: prixController,
                   label: 'Prix vente produit',
+                  type: TextInputType.number,
                   onChanged: () {
                     context
                         .read<AddProduitBloc>()
@@ -132,14 +151,18 @@ class _AddProduitPageState extends State<AddProduitPage> {
             BlocBuilder<AddProduitBloc, AddProduitState>(
               builder: (context, state) {
                 (state as AddProduitInitial);
-                return TextField1(
+                return DropDownFieldList(
+                  currencies: _currencies,
+                  selectedCurrency: _selectedCurrency,
+                  label: 'Devise de prix de vente',
                   etatField: state.devise,
-                  controller: deviseController,
-                  label: 'Devise Prix',
-                  onChanged: () {
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCurrency = value;
+                    });
                     context
                         .read<AddProduitBloc>()
-                        .add(OnChangedDevise(devise: deviseController.text));
+                        .add(OnChangedDevise(devise: value));
                   },
                 );
               },
@@ -150,6 +173,7 @@ class _AddProduitPageState extends State<AddProduitPage> {
                 return TextField1(
                   etatField: state.stock_initial,
                   controller: stock_initialController,
+                  type: TextInputType.number,
                   label: 'Stock Initial',
                   onChanged: () {
                     context.read<AddProduitBloc>().add(OnChangedStockInit(
@@ -164,6 +188,7 @@ class _AddProduitPageState extends State<AddProduitPage> {
                 return TextField1(
                   etatField: state.stock_alerte,
                   controller: stock_alerteController,
+                  type: TextInputType.number,
                   label: 'Stock Alerte',
                   onChanged: () {
                     context.read<AddProduitBloc>().add(OnChangedStockAlerte(
@@ -179,6 +204,7 @@ class _AddProduitPageState extends State<AddProduitPage> {
                   etatField: state.stock_min,
                   controller: stock_minController,
                   label: 'Stock Minimum',
+                  type: TextInputType.number,
                   onChanged: () {
                     context.read<AddProduitBloc>().add(
                         OnChangedStockMin(stock_min: stock_minController.text));
@@ -192,6 +218,7 @@ class _AddProduitPageState extends State<AddProduitPage> {
                 return TextField1(
                   etatField: state.stock_max,
                   controller: stock_maxController,
+                  type: TextInputType.number,
                   label: 'Stock Maximum',
                   onChanged: () {
                     context.read<AddProduitBloc>().add(
@@ -203,19 +230,14 @@ class _AddProduitPageState extends State<AddProduitPage> {
             BlocBuilder<AddProduitBloc, AddProduitState>(
               builder: (context, state) {
                 (state as AddProduitInitial);
-                return state.etat == EtatField.valid
-                    ? Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        child: const LinearProgressIndicator())
-                    : BoutonContainer(
-                        title: 'enregistrer',
-                        onSubmit: () {
-                          context
-                              .read<AddProduitBloc>()
-                              .add(OnSubmitFormEvent(context: context));
-                        },
-                        etatButton: state.etat);
+                return BoutonContainer(
+                    title: 'enregistrer',
+                    onSubmit: () {
+                      context
+                          .read<AddProduitBloc>()
+                          .add(OnSubmitFormEvent(context: context));
+                    },
+                    etatButton: state.etat);
               },
             ),
             const SizedBox(height: 10)

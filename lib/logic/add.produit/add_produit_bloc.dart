@@ -1,4 +1,6 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, unnecessary_null_comparison
+
+import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -130,7 +132,7 @@ class AddProduitBloc extends Bloc<AddProduitEvent, AddProduitState> {
               (state as AddProduitInitial).copyWith(etat: EtatField.invalid));
     });
     on<OnChangedImage>((event, emit) {
-      if (event.img.isNotEmpty) {
+      if (event.img != null) {
         emit((state as AddProduitInitial).copyWith(image: EtatField.valid));
       } else {
         emit((state as AddProduitInitial).copyWith(image: EtatField.invalid));
@@ -226,7 +228,6 @@ class AddProduitBloc extends Bloc<AddProduitEvent, AddProduitState> {
         } catch (e) {
           emit((state as AddProduitInitial)
               .copyWith(etat_request: EtatRequest.error));
-          print(e.toString());
         }
       }
     });
