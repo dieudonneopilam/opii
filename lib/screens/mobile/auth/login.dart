@@ -7,6 +7,7 @@ import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:gestock/widgets/mobile/shared/text_small.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../constants/etat.dart';
 import '../../../logic/login/login_bloc.dart';
 
 class Login extends StatelessWidget {
@@ -89,12 +90,27 @@ class Login extends StatelessWidget {
                               BlocBuilder<LoginBloc, LoginState>(
                                 builder: (context, state) {
                                   (state as LoginInitial);
-                                  return BoutonContainer(
-                                      heightButton: 65,
-                                      marginHorizontal: 0,
-                                      title: 'Login',
-                                      onSubmit: () {},
-                                      etatButton: state.etat);
+                                  return state.etatRequest ==
+                                          EtatRequest.loading
+                                      ? Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 10),
+                                          child:
+                                              const LinearProgressIndicator(),
+                                        )
+                                      : BoutonContainer(
+                                          heightButton: 65,
+                                          marginHorizontal: 0,
+                                          title: 'Login',
+                                          onSubmit: () {
+                                            context.read<LoginBloc>().add(
+                                                OnSubmit(
+                                                    password:
+                                                        passwordController.text,
+                                                    mail: mailController.text,
+                                                    context: context));
+                                          },
+                                          etatButton: state.etat);
                                 },
                               ),
                               const SizedBox(height: 10),

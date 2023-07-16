@@ -1,1 +1,1 @@
-enum RoleUser { client, member }
+enum RoleUser { client, member, admin }

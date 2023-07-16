@@ -1,17 +1,14 @@
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
 
-import '../constants/device.dart';
-import '../constants/etat.dart';
-
 class EntrepriseModel {
   final String uid;
   final String name;
   final String email;
-  final EtatEntreprise etat;
+  final String etat;
   final String phone;
   final List<Map<String, dynamic>> adresse;
   final int ca_mensuel;
-  final DEVISE_MONAIE devise_ca_mensuel;
+  final String devise_ca_mensuel;
   final DateTime timeStamp = DateTime.timestamp();
   final DateTime date_created;
   final String motif_etat;

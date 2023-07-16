@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gestock/constants/etat.dart';
 import 'package:gestock/logic/signup/sign_up_bloc.dart';
 import 'package:gestock/utils/colors.dart';
 import 'package:gestock/widgets/mobile/field/field1.dart';
@@ -106,16 +107,31 @@ class SignUp extends StatelessWidget {
                               BlocBuilder<SignUpBloc, SignUpState>(
                                 builder: (context, state) {
                                   (state as SignUpInitial);
-                                  return BoutonContainer(
-                                      heightButton: 65,
-                                      marginHorizontal: 0,
-                                      title: 'Sign up',
-                                      onSubmit: () {
-                                        context.read<SignUpBloc>().add(OnSubmit(
-                                            confirm: confirmController.text,
-                                            password: passwordController.text));
-                                      },
-                                      etatButton: state.etat);
+                                  return state.etatRequest ==
+                                          EtatRequest.loading
+                                      ? Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 10),
+                                          child:
+                                              const LinearProgressIndicator(),
+                                        )
+                                      : BoutonContainer(
+                                          heightButton: 65,
+                                          marginHorizontal: 0,
+                                          title: 'Sign up',
+                                          onSubmit: () {
+                                            context
+                                                .read<SignUpBloc>()
+                                                .add(OnSubmit(
+                                                  mail: mailController.text,
+                                                  confirm:
+                                                      confirmController.text,
+                                                  password:
+                                                      passwordController.text,
+                                                  context: context,
+                                                ));
+                                          },
+                                          etatButton: state.etat);
                                 },
                               ),
                               const SizedBox(height: 10),

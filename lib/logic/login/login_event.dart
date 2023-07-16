@@ -22,9 +22,11 @@ class OnChangedPassword extends LoginEvent {
 }
 
 class OnSubmit extends LoginEvent {
-  final String confirm;
+  final String mail;
   final String password;
-  const OnSubmit({required this.password, required this.confirm});
+  final BuildContext context;
+  const OnSubmit(
+      {required this.password, required this.mail, required this.context});
   @override
-  List<Object> get props => [confirm, password];
+  List<Object> get props => [mail, password, context];
 }

@@ -66,7 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '104261438084',
     projectId: 'opii-7b46b',
     storageBucket: 'opii-7b46b.appspot.com',
-    iosClientId: '104261438084-ldp7fobee1465jsqrr8k8ncrhi85c0ap.apps.googleusercontent.com',
+    iosClientId:
+        '104261438084-ldp7fobee1465jsqrr8k8ncrhi85c0ap.apps.googleusercontent.com',
     iosBundleId: 'com.example.gestock',
   );
 
@@ -76,7 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '104261438084',
     projectId: 'opii-7b46b',
     storageBucket: 'opii-7b46b.appspot.com',
-    iosClientId: '104261438084-0e37kb7sj2mrggp9s0ian5tvpt6r9b16.apps.googleusercontent.com',
+    iosClientId:
+        '104261438084-0e37kb7sj2mrggp9s0ian5tvpt6r9b16.apps.googleusercontent.com',
     iosBundleId: 'com.example.gestock.RunnerTests',
   );
 }

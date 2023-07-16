@@ -1,16 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
 
-import '../constants/role.dart';
-import '../constants/type.dart';
-
 class UserModel {
   final Map<String, dynamic> ese;
   final String uid;
   final String name;
   final String email;
   final String phone;
-  final TypeUser type;
-  final RoleUser role;
+  final String type;
+  final String role;
   final String password;
   final Map<String, dynamic> user_who_add;
   final bool deleted;

@@ -31,7 +31,13 @@ class OnChangedConfirm extends SignUpEvent {
 class OnSubmit extends SignUpEvent {
   final String confirm;
   final String password;
-  const OnSubmit({required this.password, required this.confirm});
+  final String mail;
+  final BuildContext context;
+  const OnSubmit(
+      {required this.password,
+      required this.confirm,
+      required this.mail,
+      required this.context});
   @override
-  List<Object> get props => [confirm, password];
+  List<Object> get props => [confirm, password, mail];
 }
