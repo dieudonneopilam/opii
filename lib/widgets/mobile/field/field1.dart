@@ -35,11 +35,7 @@ class TextField1 extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              color: (etatField == EtatField.valid
-                  ? colorBlue
-                  : (etatField == EtatField.none)
-                      ? colorlack
-                      : color),
+              color: (etatField == EtatField.valid ? colorBlue : color),
               width: 1)),
       child: TextField(
         onChanged: (value) => onChanged(),
@@ -49,11 +45,7 @@ class TextField1 extends StatelessWidget {
           contentPadding: const EdgeInsets.all(0),
           labelText: label,
           labelStyle: TextStyle(
-              color: (etatField == EtatField.valid
-                  ? colorBlue
-                  : (etatField == EtatField.none)
-                      ? colorlack
-                      : color)),
+              color: (etatField == EtatField.valid ? colorBlue : color)),
           border: InputBorder.none,
         ),
       ),

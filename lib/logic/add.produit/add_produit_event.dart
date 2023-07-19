@@ -74,5 +74,37 @@ class OnChangedImage extends AddProduitEvent {
 
 class OnSubmitFormEvent extends AddProduitEvent {
   final BuildContext context;
-  const OnSubmitFormEvent({required this.context});
+  final String designation;
+  final String expression;
+  final String prix_vente;
+  final String stock_initial;
+  final String stock_alerte;
+  final String stock_min;
+  final String stock_max;
+  final Uint8List file;
+  final String devise;
+  const OnSubmitFormEvent({
+    required this.designation,
+    required this.expression,
+    required this.prix_vente,
+    required this.stock_initial,
+    required this.stock_alerte,
+    required this.stock_min,
+    required this.stock_max,
+    required this.devise,
+    required this.file,
+    required this.context,
+  });
+  List<Object> get props => [
+        file,
+        designation,
+        expression,
+        prix_vente,
+        stock_alerte,
+        stock_initial,
+        stock_min,
+        stock_max,
+        devise,
+        context
+      ];
 }

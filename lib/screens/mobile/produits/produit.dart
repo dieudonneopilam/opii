@@ -1,5 +1,8 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gestock/models/produit.dart';
 import 'package:gestock/utils/colors.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +11,17 @@ import '../../../widgets/mobile/shared/bouton.round.dart';
 import '../../../widgets/mobile/shared/box/boxcontentproduit.dart';
 
 class ProduitsPage extends StatelessWidget {
-  const ProduitsPage({super.key});
+  ProduitsPage({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  final produit = FirebaseFirestore.instance
+      .collection('produits')
+      .where('ese', isEqualTo: {'uid': '69c9b960-24c1-11ee-ad0f-e5bef9495bf8'});
+  final Stream<QuerySnapshot> produits = FirebaseFirestore.instance
+      .collection('produits')
+      .where('ese', isEqualTo: {
+    'uid': '69c9b960-24c1-11ee-ad0f-e5bef9495bf8'
+  }).snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +44,30 @@ class ProduitsPage extends StatelessWidget {
           const SizedBox(width: 15),
         ],
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.sizeOf(context).height - 82,
-          child: ListView.builder(
-            itemCount: 6,
-            itemBuilder: (context, index) => const BoxContentProduit(),
-          ),
-        ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: produits,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          if (snapshot.data!.docs.isEmpty) {
+            return Text('non data');
+          }
+
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              return BoxContentProduit(
+                produit: ProduitModel.formDataJson(data),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }

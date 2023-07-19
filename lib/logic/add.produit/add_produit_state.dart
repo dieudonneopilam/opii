@@ -19,12 +19,14 @@ class AddProduitInitial extends AddProduitState {
   final EtatField stock_initial;
   final EtatField stock_alerte;
   final EtatField stock_max;
+  final EtatRequest etat_request;
   final EtatField image;
   const AddProduitInitial(
       {required this.designation,
       required this.prix,
       required this.devise,
       required this.expression,
+      required this.etat_request,
       required this.etat,
       required this.image,
       required this.stock_alerte,
@@ -45,17 +47,17 @@ class AddProduitInitial extends AddProduitState {
       EtatField? stock_max,
       EtatField? stock_min}) {
     return AddProduitInitial(
-      designation: designation ?? this.designation,
-      devise: devise ?? this.devise,
-      prix: prix ?? this.prix,
-      expression: expression ?? this.expression,
-      etat: etat ?? this.etat,
-      image: image ?? this.image,
-      stock_alerte: stock_alerte ?? this.stock_alerte,
-      stock_initial: stock_initial ?? this.stock_initial,
-      stock_max: stock_max ?? this.stock_max,
-      stock_min: stock_min ?? this.stock_min,
-    );
+        designation: designation ?? this.designation,
+        devise: devise ?? this.devise,
+        prix: prix ?? this.prix,
+        expression: expression ?? this.expression,
+        etat: etat ?? this.etat,
+        image: image ?? this.image,
+        stock_alerte: stock_alerte ?? this.stock_alerte,
+        stock_initial: stock_initial ?? this.stock_initial,
+        stock_max: stock_max ?? this.stock_max,
+        stock_min: stock_min ?? this.stock_min,
+        etat_request: etat_request ?? this.etat_request);
   }
 
   @override
@@ -69,6 +71,7 @@ class AddProduitInitial extends AddProduitState {
         stock_initial,
         stock_max,
         stock_min,
-        image
+        image,
+        etat_request
       ];
 }

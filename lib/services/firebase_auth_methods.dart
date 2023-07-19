@@ -23,10 +23,11 @@ class AuthMethods {
     String message = 'some error';
 
     try {
+      String uidEntreprise = const Uuid().v1();
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       final EntrepriseModel entrepriseModel = EntrepriseModel(
-          uid: userCredential.user!.uid,
+          uid: uidEntreprise,
           adresse: [],
           phone: '',
           date_created: DateTime.now(),
@@ -36,10 +37,10 @@ class AuthMethods {
           name: '',
           etat: 'open',
           motif_etat: '');
-      String uidUser = const Uuid().v1();
+
       final UserModel userModel = UserModel(
-          ese: {'uid': userCredential.user!.uid},
-          uid: uidUser,
+          ese: {'uid': uidEntreprise},
+          uid: userCredential.user!.uid,
           date_created: DateTime.now(),
           role: 'admin',
           phone: '',
@@ -52,11 +53,11 @@ class AuthMethods {
           name: '');
       await _firebaseFirestore
           .collection('entreprises')
-          .doc(userCredential.user!.uid)
+          .doc(uidEntreprise)
           .set(entrepriseModel.toJson());
       await _firebaseFirestore
           .collection('users')
-          .doc(uidUser)
+          .doc(userCredential.user!.uid)
           .set(userModel.toJson());
       message = 'success';
 

@@ -56,7 +56,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           : emit((state as SignUpInitial).copywith(etat: EtatField.invalid));
     });
     on<OnSubmit>((event, emit) async {
-      if (event.password == event.confirm) {
+      if (event.password.isNotEmpty &&
+          event.confirm.isNotEmpty &&
+          (event.password == event.confirm)) {
         emit((state as SignUpInitial)
             .copywith(password: EtatField.valid, confirm: EtatField.valid));
 

@@ -5,7 +5,9 @@ import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:gestock/services/firebase_firestore_methods.dart';
 import 'package:gestock/utils/snackbar.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../constants/etat.dart';
 
@@ -13,7 +15,7 @@ part 'add_produit_event.dart';
 part 'add_produit_state.dart';
 
 class AddProduitBloc extends Bloc<AddProduitEvent, AddProduitState> {
-  // final FireStoreMethods fireStoreMethods;
+  final FireStoreMethods fireStoreMethods = FireStoreMethods();
   AddProduitBloc()
       : super(const AddProduitInitial(
             designation: EtatField.none,
@@ -24,6 +26,7 @@ class AddProduitBloc extends Bloc<AddProduitEvent, AddProduitState> {
             image: EtatField.none,
             stock_alerte: EtatField.none,
             stock_initial: EtatField.none,
+            etat_request: EtatRequest.none,
             stock_max: EtatField.none,
             stock_min: EtatField.none)) {
     on<OnChangedDesignation>((event, emit) {
@@ -216,13 +219,25 @@ class AddProduitBloc extends Bloc<AddProduitEvent, AddProduitState> {
         showSnackBar(
             event.context, 'Veillez valider les champs exigés', Colors.red);
       } else {
+        emit((state as AddProduitInitial)
+            .copyWith(etat_request: EtatRequest.loading));
         try {
-          emit((state as AddProduitInitial)
-              .copyWith(etat_request: EtatRequest.loading));
-
+          await fireStoreMethods.addProduit(
+            event.designation,
+            event.prix_vente,
+            event.expression,
+            event.devise,
+            event.stock_initial,
+            event.stock_max,
+            event.stock_min,
+            event.file,
+            event.stock_alerte,
+            event.context,
+          );
           emit((state as AddProduitInitial)
               .copyWith(etat_request: EtatRequest.loaded));
         } catch (e) {
+          showSnackBar(event.context, 'Echec...', Colors.red);
           emit((state as AddProduitInitial)
               .copyWith(etat_request: EtatRequest.error));
         }

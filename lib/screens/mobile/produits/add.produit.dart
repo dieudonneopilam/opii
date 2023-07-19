@@ -3,9 +3,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gestock/constants/etat.dart';
 import 'package:gestock/logic/add.produit/add_produit_bloc.dart';
 import 'package:gestock/utils/colors.dart';
 import 'package:gestock/utils/pickimage.dart';
+import 'package:gestock/utils/snackbar.dart';
 import 'package:gestock/widgets/mobile/field/dropdownlist.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:gestock/widgets/mobile/shared/text_small.dart';
@@ -25,7 +27,6 @@ class _AddProduitPageState extends State<AddProduitPage> {
   TextEditingController designationController = TextEditingController();
   TextEditingController expressionController = TextEditingController();
   TextEditingController prixController = TextEditingController();
-  TextEditingController deviseController = TextEditingController();
   TextEditingController stock_initialController = TextEditingController();
   TextEditingController stock_alerteController = TextEditingController();
   TextEditingController stock_minController = TextEditingController();
@@ -227,17 +228,38 @@ class _AddProduitPageState extends State<AddProduitPage> {
                 );
               },
             ),
-            BlocBuilder<AddProduitBloc, AddProduitState>(
+            BlocConsumer<AddProduitBloc, AddProduitState>(
+              listener: (context, state) {
+                (state as AddProduitInitial);
+                if (state.etat_request == EtatRequest.loaded) {
+                  context.goNamed('produits');
+                }
+              },
               builder: (context, state) {
                 (state as AddProduitInitial);
-                return BoutonContainer(
-                    title: 'enregistrer',
-                    onSubmit: () {
-                      context
-                          .read<AddProduitBloc>()
-                          .add(OnSubmitFormEvent(context: context));
-                    },
-                    etatButton: state.etat);
+                return (state.etat_request == EtatRequest.loading)
+                    ? Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        child: const LinearProgressIndicator(),
+                      )
+                    : BoutonContainer(
+                        title: 'enregistrer',
+                        onSubmit: () {
+                          context.read<AddProduitBloc>().add(OnSubmitFormEvent(
+                                context: context,
+                                designation: designationController.text,
+                                devise: _selectedCurrency,
+                                expression: expressionController.text,
+                                file: img!,
+                                prix_vente: prixController.text,
+                                stock_alerte: stock_alerteController.text,
+                                stock_initial: stock_initialController.text,
+                                stock_max: stock_maxController.text,
+                                stock_min: stock_minController.text,
+                              ));
+                        },
+                        etatButton: state.etat);
               },
             ),
             const SizedBox(height: 10)

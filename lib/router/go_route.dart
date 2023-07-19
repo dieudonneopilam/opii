@@ -58,7 +58,7 @@ class GoRoutes {
           GoRoute(
               name: 'produits',
               path: 'produits',
-              builder: (context, state) => const ProduitsPage(),
+              builder: (context, state) => ProduitsPage(),
               routes: [
                 GoRoute(
                   name: 'add_produit',

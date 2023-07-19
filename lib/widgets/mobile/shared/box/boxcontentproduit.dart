@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestock/models/produit.dart';
 import 'package:gestock/widgets/mobile/shared/text_small.dart';
 import 'package:heroicons/heroicons.dart';
 import '../../../../utils/colors.dart';
@@ -6,7 +7,10 @@ import '../../../../utils/colors.dart';
 class BoxContentProduit extends StatelessWidget {
   const BoxContentProduit({
     super.key,
+    required this.produit,
   });
+
+  final ProduitModel produit;
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +29,19 @@ class BoxContentProduit extends StatelessWidget {
             width: 100,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                image: const DecorationImage(
-                    image: AssetImage('assets/img/bg.jpeg'),
-                    fit: BoxFit.cover)),
+                image: DecorationImage(
+                    image: NetworkImage(produit.urlImage), fit: BoxFit.cover)),
           ),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TextSmal(text: 'Fanta', size: 20),
-              const TextSmal(text: 'Stock : 400 bouteilles'),
-              TextSmal(text: 'Prix de vente : 10 \$', color: colorBlue),
+              TextSmal(text: produit.designation, size: 20),
+              TextSmal(text: 'Stock : ${produit.stock}'),
+              TextSmal(
+                  text:
+                      'Prix de vente : ${produit.prix_vente} ${produit.devise_prix}',
+                  color: colorBlue),
             ],
           ),
           Expanded(child: Container()),
