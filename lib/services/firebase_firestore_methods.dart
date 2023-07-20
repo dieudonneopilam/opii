@@ -45,9 +45,9 @@ class FireStoreMethods {
             .get();
 
         Map<String, dynamic> ese = documentSnapshot.data()!;
-        print(ese['ese']);
         ProduitModel produitModel = ProduitModel(
           ese: ese['ese'],
+          expression: expression,
           stock: stock_init,
           prix_vente: prix_vente,
           devise_prix: devise,

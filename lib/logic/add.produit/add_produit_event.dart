@@ -95,6 +95,7 @@ class OnSubmitFormEvent extends AddProduitEvent {
     required this.file,
     required this.context,
   });
+  @override
   List<Object> get props => [
         file,
         designation,

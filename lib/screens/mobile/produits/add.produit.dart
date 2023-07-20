@@ -7,7 +7,6 @@ import 'package:gestock/constants/etat.dart';
 import 'package:gestock/logic/add.produit/add_produit_bloc.dart';
 import 'package:gestock/utils/colors.dart';
 import 'package:gestock/utils/pickimage.dart';
-import 'package:gestock/utils/snackbar.dart';
 import 'package:gestock/widgets/mobile/field/dropdownlist.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:gestock/widgets/mobile/shared/text_small.dart';
@@ -96,13 +95,17 @@ class _AddProduitPageState extends State<AddProduitPage> {
                     )
                   : GestureDetector(
                       onTap: () => selectImage(),
-                      child: Row(
-                        children: [
-                          Icon(Icons.photo, size: 50, color: colorBlue),
-                          TextSmal(
-                              text: 'selectionner la photo du produit',
-                              color: colorBlue)
-                        ],
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.photo, size: 50, color: colorBlue),
+                            TextSmal(
+                                text: 'selectionner la photo du produit',
+                                color: colorBlue)
+                          ],
+                        ),
                       ),
                     ),
             ),
@@ -246,18 +249,22 @@ class _AddProduitPageState extends State<AddProduitPage> {
                     : BoutonContainer(
                         title: 'enregistrer',
                         onSubmit: () {
-                          context.read<AddProduitBloc>().add(OnSubmitFormEvent(
-                                context: context,
-                                designation: designationController.text,
-                                devise: _selectedCurrency,
-                                expression: expressionController.text,
-                                file: img!,
-                                prix_vente: prixController.text,
-                                stock_alerte: stock_alerteController.text,
-                                stock_initial: stock_initialController.text,
-                                stock_max: stock_maxController.text,
-                                stock_min: stock_minController.text,
-                              ));
+                          if (img != null) {
+                            context
+                                .read<AddProduitBloc>()
+                                .add(OnSubmitFormEvent(
+                                  context: context,
+                                  designation: designationController.text,
+                                  devise: _selectedCurrency,
+                                  expression: expressionController.text,
+                                  file: img!,
+                                  prix_vente: prixController.text,
+                                  stock_alerte: stock_alerteController.text,
+                                  stock_initial: stock_initialController.text,
+                                  stock_max: stock_maxController.text,
+                                  stock_min: stock_minController.text,
+                                ));
+                          }
                         },
                         etatButton: state.etat);
               },

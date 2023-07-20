@@ -7,7 +7,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gestock/services/firebase_firestore_methods.dart';
 import 'package:gestock/utils/snackbar.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../constants/etat.dart';
 

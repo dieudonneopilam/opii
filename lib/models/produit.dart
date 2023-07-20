@@ -10,6 +10,7 @@ class ProduitModel {
   final String prix_vente;
   final String stock;
   final String devise_prix;
+  final String expression;
   final String urlImage;
   final Map<String, dynamic> user_who_add;
   final bool deleted;
@@ -21,6 +22,7 @@ class ProduitModel {
   ProduitModel({
     required this.ese,
     required this.stock,
+    required this.expression,
     required this.prix_vente,
     required this.devise_prix,
     required this.urlImage,
@@ -52,13 +54,15 @@ class ProduitModel {
       'stock': stock,
       'devise_prix': devise_prix,
       'urlImage': urlImage,
-      'date_created': date_created
+      'date_created': date_created,
+      'expression': expression
     };
   }
 
   static ProduitModel formDataJson(Map data) {
     return ProduitModel(
         ese: data['ese'],
+        expression: data['expression'],
         stock: data['stock'],
         prix_vente: data['prix_vente'],
         devise_prix: data['devise_prix'],

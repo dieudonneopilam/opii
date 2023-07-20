@@ -48,14 +48,14 @@ class ProduitsPage extends StatelessWidget {
         stream: produits,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return const Text("Loading");
           }
           if (snapshot.data!.docs.isEmpty) {
-            return Text('non data');
+            return const Text('non data');
           }
 
           return ListView(

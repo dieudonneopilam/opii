@@ -25,7 +25,7 @@ class BoxContentProduit extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 75,
+            height: 80,
             width: 100,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -37,7 +37,7 @@ class BoxContentProduit extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextSmal(text: produit.designation, size: 20),
-              TextSmal(text: 'Stock : ${produit.stock}'),
+              TextSmal(text: 'Stock : ${produit.stock} ${produit.expression}'),
               TextSmal(
                   text:
                       'Prix de vente : ${produit.prix_vente} ${produit.devise_prix}',
