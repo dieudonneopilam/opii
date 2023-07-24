@@ -5,6 +5,7 @@ import 'package:gestock/widgets/mobile/shared/bouton.round.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
+
 import '../../../widgets/mobile/shared/box/boxcontentabview.dart';
 import '../../../widgets/mobile/shared/tabbarmodel.dart';
 
@@ -21,6 +22,7 @@ class _VentePageState extends State<VentePage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: bgcolorwhite,
       appBar: AppBar(
+        centerTitle: true,
         toolbarHeight: 70,
         leading: IconButton(
             onPressed: () => context.pop(),
@@ -29,7 +31,9 @@ class _VentePageState extends State<VentePage> with TickerProviderStateMixin {
         actions: [
           BouttonIconRound(iconData: BootstrapIcons.search, onTap: () {}),
           const SizedBox(width: 10),
-          BouttonIconRound(iconData: BootstrapIcons.plus, onTap: () {}),
+          BouttonIconRound(iconData: BootstrapIcons.plus, onTap: () {
+            context.goNamed('add_vente');
+          }),
           const SizedBox(width: 15),
         ],
       ),

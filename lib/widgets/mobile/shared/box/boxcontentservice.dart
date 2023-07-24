@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../text_small.dart';
 
 class BoxContentService extends StatelessWidget {
@@ -18,7 +19,6 @@ class BoxContentService extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 157,
-        width: 170,
         decoration: BoxDecoration(
             color: const Color(0xFFEEEEEE),
             borderRadius: BorderRadius.circular(30)),

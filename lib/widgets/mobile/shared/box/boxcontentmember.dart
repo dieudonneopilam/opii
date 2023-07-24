@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../utils/colors.dart';
 import '../text_moy.dart';
 import '../text_small.dart';
@@ -11,6 +12,7 @@ class BoxContentMember extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -47,7 +49,7 @@ class BoxContentMember extends StatelessWidget {
                       color: bgcolorwhite,
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 30),
                   Container(
                     alignment: Alignment.center,
                     width: 100,

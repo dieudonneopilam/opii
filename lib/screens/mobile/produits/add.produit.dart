@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestock/constants/etat.dart';
-import 'package:gestock/logic/add.produit/add_produit_bloc.dart';
+import 'package:gestock/logic/produits/add.produit/add_produit_bloc.dart';
 import 'package:gestock/utils/colors.dart';
 import 'package:gestock/utils/pickimage.dart';
 import 'package:gestock/widgets/mobile/field/dropdownlist.dart';
@@ -12,6 +12,7 @@ import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:gestock/widgets/mobile/shared/text_small.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../../widgets/mobile/field/field1.dart';
 import '../../../widgets/mobile/shared/boutoncontainer.dart';
 
@@ -43,7 +44,6 @@ class _AddProduitPageState extends State<AddProduitPage> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gestock/logic/add.produit/add_produit_bloc.dart';
 import 'package:gestock/logic/cupertino.tap.bar/cupertino_tab_bar_bloc.dart';
 import 'package:gestock/logic/login/login_bloc.dart';
+import 'package:gestock/logic/produits/add.produit/add_produit_bloc.dart';
 import 'package:gestock/logic/signup/sign_up_bloc.dart';
 import 'package:gestock/screens/mobile/auth/login.dart';
 import 'package:gestock/screens/mobile/auth/signun.dart';
@@ -12,7 +12,9 @@ import 'package:gestock/screens/mobile/produits/add.produit.dart';
 import 'package:gestock/screens/mobile/produits/produit.dart';
 import 'package:gestock/screens/mobile/ventes/vente.dart';
 import 'package:go_router/go_router.dart';
+
 import '../screens/mobile/home/home.dart';
+import '../screens/mobile/ventes/add.vente.dart';
 
 class GoRoutes {
   static final GoRouter router = GoRouter(
@@ -51,7 +53,7 @@ class GoRoutes {
                   path: 'new',
                   builder: (context, state) => BlocProvider(
                     create: (context) => AddProduitBloc(),
-                    child: const AddProduitPage(),
+                    child:  AddVente(),
                   ),
                 )
               ]),

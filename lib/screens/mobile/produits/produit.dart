@@ -7,6 +7,7 @@ import 'package:gestock/utils/colors.dart';
 import 'package:gestock/widgets/mobile/shared/text_moy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
+
 import '../../../widgets/mobile/shared/bouton.round.dart';
 import '../../../widgets/mobile/shared/box/boxcontentproduit.dart';
 
@@ -52,12 +53,11 @@ class ProduitsPage extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.data!.docs.isEmpty) {
             return const Text('non data');
           }
-
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =

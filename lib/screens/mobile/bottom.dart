@@ -1,4 +1,3 @@
-import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,21 +12,7 @@ class BottomNavigationBarPage extends StatelessWidget {
     return BlocBuilder<CupertinoTabBarBloc, CupertinoTabBarState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            toolbarHeight: 70,
-            title: const Text('Tesla Companie'),
-            actions: const [
-              Icon(BootstrapIcons.bell),
-              SizedBox(width: 20),
-              CircleAvatar(
-                radius: 22,
-                backgroundImage: AssetImage('assets/img/bg.jpeg'),
-              ),
-              SizedBox(width: 20)
-            ],
-          ),
+          
           backgroundColor: Colors.black,
           body: pagesClient[(state as CupertinoTabBarInitial).currentIndex],
           bottomNavigationBar: CupertinoTabBar(

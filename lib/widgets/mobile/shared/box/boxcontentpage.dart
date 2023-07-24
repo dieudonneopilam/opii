@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gestock/utils/colors.dart';
+
 import '../text_large.dart';
 
 class BoxContentPage extends StatelessWidget {
-  const BoxContentPage({
+   const BoxContentPage({
     super.key,
     required this.boxContent,
     this.sizeBoxContentImage = 150,
@@ -26,7 +27,7 @@ class BoxContentPage extends StatelessWidget {
         Positioned(
           child: Container(
             alignment: Alignment.center,
-            height: sizeBoxContentImage,
+            height: MediaQuery.sizeOf(context).height * 0.25,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -43,14 +44,14 @@ class BoxContentPage extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: sizeBoxContentImage - 10,
+          top: MediaQuery.sizeOf(context).height * 0.25 - 30,
           child: Container(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 290,
+            height: MediaQuery.sizeOf(context).height * 0.75,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(15), topRight: Radius.circular(15)),
               color: bgcolorwhite,
             ),
             child: Column(children: [
